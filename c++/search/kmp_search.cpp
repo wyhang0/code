@@ -34,8 +34,8 @@ int normal_search(char *mainString, char *patternString){
 }
 void init_next(char *patternString, int *next){
 	int patternStringLen = strlen(patternString);
-	next[0] = -1;
-	int k = -1;//坏字符i的 好前缀字符串的 最长可匹配前缀子串的 尾子符下标值
+	next[0] = -1;//next[m]=n;字符串下标为m的最长可以匹配前缀子串的下表为n
+	int k = -1;//-1不存在最长可匹配前缀子串
 	for(int i=1; i<patternStringLen-1; i++){
 		//在坏字符i的 好前缀字符串的 可匹配前缀子串中 找到最长的可匹配前缀子串的下一个字符与坏字符相等的子串末尾字符下标k或者找不到k为-1
 		while(k != -1 && patternString[k+1] != patternString[i]){
