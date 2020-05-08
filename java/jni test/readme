@@ -1,0 +1,4 @@
+javac -d . -cp JRSearch.jar CFileWrapper.java
+javah com.bwtek.analysislibrary.CFileWrapper
+java -Djava.library.path=/root/t/ -cp JRSearch.jar:. com.bwtek.analysislibrary.CFileWrapper
+ldd libnative-lib.so

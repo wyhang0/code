@@ -1,0 +1,6 @@
+g++ -c -pipe -O2 -std=gnu++11 -Wall -W -D_REENTRANT -fPIC -DUNTITLED_LIBRARY -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_CORE_LIB -I../untitled -I. -I/opt/android-studio/jre/include/linux -I/opt/android-studio/jre/include -I../untitled/NumericalRecipes3 -I/opt/Qt5.7.1/5.7/gcc_64/include -I/opt/Qt5.7.1/5.7/gcc_64/include/QtCore -I. -I/opt/Qt5.7.1/5.7/gcc_64/mkspecs/linux-g++ -o com_bwtek_analysislibrary_CFileWrapper.o ../untitled/com_bwtek_analysislibrary_CFileWrapper.cpp
+rm -f libnative-lib.so.1.0.0 libnative-lib.so libnative-lib.so.1 libnative-lib.so.1.0
+g++ -Wl,-O1 -Wl,-rpath,/opt/Qt5.7.1/5.7/gcc_64/lib -shared -Wl,-soname,libnative-lib.so.1 -o libnative-lib.so.1.0.0 com_bwtek_analysislibrary_CFileWrapper.o  -L/opt/Qt5.7.1/5.7/gcc_64/lib -lQt5Core -lpthread  
+ln -s libnative-lib.so.1.0.0 libnative-lib.so
+ln -s libnative-lib.so.1.0.0 libnative-lib.so.1
+ln -s libnative-lib.so.1.0.0 libnative-lib.so.1.0
