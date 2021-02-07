@@ -1,5 +1,23 @@
 #!/bin/bash
 
+#源目录
+SourceDir=$1
+#备份目录
+DestinationDir=$2
+#创建备份夹的子目录
+DirArray=()
+#备份子目录的文件
+FileArray=()
+#备份子目录的目录
+FilesArray=()
+
+#---------------备份项目文件----------------
+DirArray+=(/test1/)
+FileArray+=(/test1/a.txt text1/b.txt)
+
+DirArray+=(/test2/)
+FileArray+=(/test2/a.txt text2/b.txt)
+
 commandArgTest(){
 	if [ $# -lt 2 ]
 	then
@@ -47,36 +65,19 @@ cpDirCmd(){
         echo
 }
 
-//源目录
-SourceDir=$1
-//备份目录
-DestinationDir=$2
+commandArgTest $@
 
-//---------------备份项目文件-----------------
-//备份夹的子目录结构
-ProjectConfigDir=/device/lentek/len6737t_66_sh_n/
-Arm64Dir=/kernel-3.18/arch/arm64/configs/
-
-//创建备份夹的子目录
-DirArray=($ProjectConfigDir $Arm64Dir)
-//备份子目录的文件
-FileArray=(${ProjectConfigDir}ProjectConfig.mk ${Arm64Dir}len6737t_66_sh_n_debug_defconfig ${Arm64Dir}len6737t_66_sh_n_defconfig)
-//备份子目录的目录
-FilesArray=()
-
-commandArgTest $*
-
-for dir in ${DirArray[*]}
+for dir in ${DirArray[@]}
 do
 	mkdirCmd ${DestinationDir}${dir}
 done
 
-for file in ${FileArray[*]}
+for file in ${FileArray[@]}
 do
 	cpFileCmd $SourceDir$file $DestinationDir$file
 done
 
-for dir in ${FilesArray[*]}
+for dir in ${FilesArray[@]}
 do
 	cpFileCmd $SourceDir$dir $DestinationDir$dir
 done
